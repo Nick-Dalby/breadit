@@ -1,0 +1,244 @@
+"""
+Table 'comment' aliased as GQLName: 'Comment'
+"""
+type Comment {
+  created_at: DateTime
+  id: ID!
+  post_id: ID
+  text: String
+  username: String
+}
+
+"""
+Table 'post' aliased as GQLName: 'Post'
+"""
+type Post {
+  body: String
+  created_at: DateTime
+  id: ID!
+  image: String
+  subbread_id: ID
+  title: String
+  username: String
+}
+
+"""
+Table 'subbread' aliased as GQLName: 'Subbread'
+"""
+type Subbread {
+  created_at: DateTime
+  filling: String
+  id: ID!
+}
+
+"""
+Table 'vote' aliased as GQLName: 'Vote'
+"""
+type Vote {
+  created_at: DateTime
+  id: ID!
+  post_id: ID
+  upvote: Boolean
+  username: String
+}
+
+"""
+The following queries are just a set of examples of how to access your schema.
+Feel free to modify them or aggregate more.
+"""
+type Query {
+  " Queries for type 'Comment' "
+  getCommentList: [Comment]
+    @dbquery(
+      type: "postgresql"
+      schema: "public"
+      table: "comment"
+      configuration: "postgresql_config"
+    )
+  getCommentPaginatedList(first: Int, after: Int): [Comment]
+    @dbquery(
+      type: "postgresql"
+      schema: "public"
+      query: """
+      SELECT "created_at", "id", "post_id", "text", "username" FROM "comment" LIMIT $1 OFFSET $2
+      """
+      configuration: "postgresql_config"
+    )
+  " Queries for type 'Post' "
+  getPostList: [Post]
+    @dbquery(
+      type: "postgresql"
+      schema: "public"
+      table: "post"
+      configuration: "postgresql_config"
+    )
+  getPostPaginatedList(first: Int, after: Int): [Post]
+    @dbquery(
+      type: "postgresql"
+      schema: "public"
+      query: """
+      SELECT "body", "created_at", "id", "image", "subbread_id", "title", "username" FROM "post" LIMIT $1 OFFSET $2
+      """
+      configuration: "postgresql_config"
+    )
+  " Queries for type 'Subbread' "
+  getSubbreadById(id: ID!): [Subbread]
+    @dbquery(
+      type: "postgresql"
+      schema: "public"
+      table: "subbread"
+      configuration: "postgresql_config"
+    )
+  getSubbreadByIdAndFilling(id: ID!, filling: String!): [Subbread]
+    @dbquery(
+      type: "postgresql"
+      schema: "public"
+      table: "subbread"
+      configuration: "postgresql_config"
+    )
+  getSubbreadList: [Subbread]
+    @dbquery(
+      type: "postgresql"
+      schema: "public"
+      table: "subbread"
+      configuration: "postgresql_config"
+    )
+  getSubbreadPaginatedList(first: Int, after: Int): [Subbread]
+    @dbquery(
+      type: "postgresql"
+      schema: "public"
+      query: """
+      SELECT "created_at", "filling", "id" FROM "subbread" LIMIT $1 OFFSET $2
+      """
+      configuration: "postgresql_config"
+    )
+  " Queries for type 'Vote' "
+  getVoteList: [Vote]
+    @dbquery(
+      type: "postgresql"
+      schema: "public"
+      table: "vote"
+      configuration: "postgresql_config"
+    )
+  getVotePaginatedList(first: Int, after: Int): [Vote]
+    @dbquery(
+      type: "postgresql"
+      schema: "public"
+      query: """
+      SELECT "created_at", "id", "post_id", "upvote", "username" FROM "vote" LIMIT $1 OFFSET $2
+      """
+      configuration: "postgresql_config"
+    )
+}
+
+"""
+The following mutations are just a set of examples of how to access your schema.
+Feel free to modify them or aggregate more.
+"""
+type Mutation {
+  " Mutations for type 'Comment' "
+  deleteComment(
+    username: String!
+    post_id: ID!
+    text: String!
+    id: ID!
+    created_at: DateTime!
+  ): Comment
+    @dbquery(
+      type: "postgresql"
+      schema: "public"
+      table: "comment"
+      dml: DELETE
+      configuration: "postgresql_config"
+    )
+  insertComment(
+    username: String
+    post_id: ID
+    text: String
+    created_at: DateTime
+  ): Comment
+    @dbquery(
+      type: "postgresql"
+      schema: "public"
+      table: "comment"
+      dml: INSERT
+      configuration: "postgresql_config"
+    )
+  " Mutations for type 'Post' "
+  deletePost(
+    body: String!
+    created_at: DateTime!
+    title: String!
+    username: String!
+    image: String!
+    subbread_id: ID!
+    id: ID!
+  ): Post
+    @dbquery(
+      type: "postgresql"
+      schema: "public"
+      table: "post"
+      dml: DELETE
+      configuration: "postgresql_config"
+    )
+  insertPost(
+    body: String
+    created_at: DateTime
+    title: String
+    username: String
+    image: String
+    subbread_id: ID
+  ): Post
+    @dbquery(
+      type: "postgresql"
+      schema: "public"
+      table: "post"
+      dml: INSERT
+      configuration: "postgresql_config"
+    )
+  " Mutations for type 'Subbread' "
+  deleteSubbread(filling: String!, created_at: DateTime!, id: ID!): Subbread
+    @dbquery(
+      type: "postgresql"
+      schema: "public"
+      table: "subbread"
+      dml: DELETE
+      configuration: "postgresql_config"
+    )
+  insertSubbread(filling: String, created_at: DateTime): Subbread
+    @dbquery(
+      type: "postgresql"
+      schema: "public"
+      table: "subbread"
+      dml: INSERT
+      configuration: "postgresql_config"
+    )
+  " Mutations for type 'Vote' "
+  deleteVote(
+    username: String!
+    post_id: ID!
+    id: ID!
+    created_at: DateTime!
+    upvote: Boolean!
+  ): Vote
+    @dbquery(
+      type: "postgresql"
+      schema: "public"
+      table: "vote"
+      dml: DELETE
+      configuration: "postgresql_config"
+    )
+  insertVote(
+    username: String
+    post_id: ID
+    created_at: DateTime
+    upvote: Boolean
+  ): Vote
+    @dbquery(
+      type: "postgresql"
+      schema: "public"
+      table: "vote"
+      dml: INSERT
+      configuration: "postgresql_config"
+    )
+}
