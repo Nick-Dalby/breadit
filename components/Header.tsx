@@ -13,6 +13,7 @@ import {
   HomeIcon,
   MagnifyingGlassIcon,
 } from '@heroicons/react/24/solid'
+import { signIn } from 'next-auth/react'
 import Image from 'next/image'
 
 const Header = () => {
@@ -67,7 +68,7 @@ const Header = () => {
       </div>
 
       {/* sign in/out */}
-      <div className='hidden lg:flex items-center space-x-2 border rounded-md border-gray-100 p-2 cursor-pointer'>
+      <div onClick={() => signIn()} className='hidden lg:flex items-center space-x-2 border rounded-md border-gray-100 p-2 cursor-pointer'>
         <div className="relative h-5 w-5 flex-shrink-0">
           <Image
             src="/breadface-grey.svg"
