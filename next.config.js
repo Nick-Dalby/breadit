@@ -3,7 +3,7 @@ const nextConfig = {
   reactStrictMode: true,
   swcMinify: true,
   images: {
-    domains: [], // add urls to whitelist domains
+    domains: ['avatars.dicebear.com'], // add urls to whitelist domains
   },
 }
 
