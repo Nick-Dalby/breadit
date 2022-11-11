@@ -1,6 +1,7 @@
 import {
   BellIcon,
   ChatBubbleOvalLeftEllipsisIcon,
+  ChevronDoubleDownIcon,
   GlobeEuropeAfricaIcon,
   MegaphoneIcon,
   PlusIcon,
@@ -13,10 +14,12 @@ import {
   HomeIcon,
   MagnifyingGlassIcon,
 } from '@heroicons/react/24/solid'
-import { signIn } from 'next-auth/react'
+import { signIn, signOut, useSession } from 'next-auth/react'
 import Image from 'next/image'
 
 const Header = () => {
+  const { data: session } = useSession()
+
   return (
     <div className="sticky top-0 z-50 flex bg-white px-4 py-2 shadow-sm">
       <div className="flex flex-shrink-0 cursor-pointer items-center space-x-2">
@@ -68,17 +71,42 @@ const Header = () => {
       </div>
 
       {/* sign in/out */}
-      <div onClick={() => signIn()} className='hidden lg:flex items-center space-x-2 border rounded-md border-gray-100 p-2 cursor-pointer'>
-        <div className="relative h-5 w-5 flex-shrink-0">
-          <Image
-            src="/breadface-grey.svg"
-            fill
-            alt=""
-            className="object-contain "
-          />
+      {session ? (
+        <div
+          onClick={() => signOut()}
+          className="hidden cursor-pointer items-center space-x-2 rounded-md border border-gray-100 p-2 lg:flex"
+        >
+          <div className="relative h-5 w-5 flex-shrink-0">
+            <Image
+              src="/breadface-grey.svg"
+              fill
+              alt=""
+              className="object-contain "
+            />
+          </div>
+          <div className='flex-1 text-xs'>
+          <p className='truncate'>{session?.user?.name}</p>
+          <p className="text-gray-400">20 Karma</p>
+          </div>
+        
+        <ChevronDoubleDownIcon className='h-5 flex-shrink-0 text-gray-400' />
         </div>
-        <p className='text-gray-400'>Sign In</p>
-      </div>
+      ) : (
+        <div
+          onClick={() => signIn()}
+          className="hidden cursor-pointer items-center space-x-2 rounded-md border border-gray-100 p-2 lg:flex"
+        >
+          <div className="relative h-5 w-5 flex-shrink-0">
+            <Image
+              src="/breadface-grey.svg"
+              fill
+              alt=""
+              className="object-contain "
+            />
+          </div>
+          <p className="text-gray-400">Sign In</p>
+        </div>
+      )}
     </div>
   )
 }
