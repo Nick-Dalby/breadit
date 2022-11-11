@@ -21,7 +21,7 @@ const Header = () => {
   const { data: session } = useSession()
 
   return (
-    <div className="sticky top-0 z-50 flex bg-white px-4 py-2 shadow-sm">
+    <div className="sticky top-0 z-50 flex bg-white px-4 py-2 shadow-sm " >
       <div className="flex flex-shrink-0 cursor-pointer items-center space-x-2">
         <div className="relative h-10 w-10">
           <Image
@@ -31,7 +31,7 @@ const Header = () => {
             className="object-contain"
           />
         </div>
-        <div className="relative h-10 w-20">
+        <div className="relative h-10 w-20 hidden sm:inline-block">
           <Image
             src="/breadit.svg"
             alt="logo"
@@ -46,12 +46,12 @@ const Header = () => {
         <ChevronDownIcon className="h-5 w-5" />
       </div>
 
-      <form className="flex flex-1 items-center space-x-2 rounded-full border border-gray-200 bg-gray-100 px-3 py-1">
+      <form className="hidden sm:flex flex-1 items-center space-x-2 rounded-full border border-gray-200 bg-gray-100 px-3 py-1">
         <MagnifyingGlassIcon className="h-6 w-6 text-gray-400" />
         <input
           type="text"
           placeholder="Look for loaves"
-          className="flex-1 bg-transparent outline-none"
+          className="flex-1 bg-transparent outline-none text-sm sm:text-base"
         />
         <button type="submit" hidden></button>
       </form>
@@ -66,7 +66,7 @@ const Header = () => {
         <PlusIcon className="icon" />
         <MegaphoneIcon className="icon" />
       </div>
-      <div className="ml-5 flex items-center lg:hidden">
+      <div className="ml-auto sm:ml-5 flex items-center lg:hidden">
         <Bars3Icon className="icon" />
       </div>
 
