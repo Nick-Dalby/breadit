@@ -20,6 +20,21 @@ type Post {
   subbread_id: ID
   title: String
   username: String
+  comments: [Comment]
+    @materializer(
+      query: "getCommentByPostId"
+      arguments: [{ name: "post_id", field: "id" }]
+    )
+  votes: [Vote]
+    @materializer(
+      query: "getVotesByPostId"
+      arguments: [{ name: "post_id", field: "id" }]
+    )
+  subbread: [Subbread]
+    @materializer(
+      query: "getSubbreadListById"
+      arguments: [{ name: "id", field: "subbread_id" }]
+    )
 }
 
 """
@@ -55,6 +70,38 @@ type Query {
       table: "comment"
       configuration: "postgresql_config"
     )
+
+  getCommentByPostId(post_id: ID!): [Comment]
+    @dbquery(
+      type: "postgresql"
+      schema: "public"
+      query: """
+      select * from "comment" where "post_id" = $1
+      """
+      configuration: "postgresql_config"
+    )  
+
+  getVotesByPostId(post_id: ID!): [Vote]
+    @dbquery(
+      type: "postgresql"
+      schema: "public"
+      query: """
+      select * from "vote" where "post_id" = $1
+      order by "created_at" desc      
+      """
+      configuration: "postgresql_config"
+    )
+
+  getSubbreadListById(id: ID!): [Subbread]
+    @dbquery(
+      type: "postgresql"
+      schema: "public"
+      query: """
+      select * from "subbread" where "id" = $1
+      """
+      configuration: "postgresql_config"
+    )
+
   getCommentPaginatedList(first: Int, after: Int): [Comment]
     @dbquery(
       type: "postgresql"
