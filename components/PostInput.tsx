@@ -8,7 +8,7 @@ import Avatar from './Avatar'
 import { toast } from 'react-hot-toast'
 
 import client from '../apollo-client'
-import { GET_SUBBREAD_BT_FILLING } from '../graphql/queries'
+import { GET_SUBBREAD_BY_FILLING } from '../graphql/queries'
 
 type FormData = {
   postTitle: string
@@ -41,7 +41,7 @@ const PostInput = () => {
       const {
         data: { getSubbreadByFilling },
       } = await client.query({
-        query: GET_SUBBREAD_BT_FILLING,
+        query: GET_SUBBREAD_BY_FILLING,
         variables: {
           filling: formData.subbread,
         },
