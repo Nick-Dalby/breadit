@@ -112,6 +112,16 @@ type Query {
       """
       configuration: "postgresql_config"
     )
+  getSubbreadByFilling(filling: String!): [Subbread]
+    @dbquery(
+      type: "postgresql"
+      schema: "public"
+      query: """
+      select * from "subbread" where "filling" = $1
+      """
+      configuration: "postgresql_config"
+    )
+
   " Queries for type 'Vote' "
   getVoteList: [Vote]
     @dbquery(
@@ -183,7 +193,6 @@ type Mutation {
     )
   insertPost(
     body: String
-    created_at: DateTime
     title: String
     username: String
     image: String
@@ -205,7 +214,7 @@ type Mutation {
       dml: DELETE
       configuration: "postgresql_config"
     )
-  insertSubbread(filling: String, created_at: DateTime): Subbread
+  insertSubbread(filling: String!): Subbread
     @dbquery(
       type: "postgresql"
       schema: "public"
