@@ -1,9 +1,10 @@
 import Head from 'next/head'
+import Feed from '../components/Feed'
 import PostInput from '../components/PostInput'
 
 export default function Home() {
   return (
-    <div className='max-w-4xl my-7 mx-auto '>
+    <div className="my-7 mx-auto max-w-4xl ">
       <Head>
         <title>Breadit</title>
         <meta name="description" content="The worlds best bread community!" />
@@ -13,13 +14,13 @@ export default function Home() {
         ></link>
       </Head>
 
-    {/* post input  */}
-    <PostInput />
+      {/* post input  */}
+      <PostInput />
 
-    <div className='flex'>
-      {/* feed */}
-    </div>
-
+      <div className="flex">
+        {/* feed */}
+        <Feed />
+      </div>
     </div>
   )
 }
