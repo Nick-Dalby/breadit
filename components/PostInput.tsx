@@ -8,7 +8,7 @@ import Avatar from './Avatar'
 import { toast } from 'react-hot-toast'
 
 import client from '../apollo-client'
-import { GET_SUBBREAD_BY_FILLING } from '../graphql/queries'
+import { GET_ALL_POSTS, GET_SUBBREAD_BY_FILLING } from '../graphql/queries'
 
 type FormData = {
   postTitle: string
@@ -19,7 +19,12 @@ type FormData = {
 
 const PostInput = () => {
   const { data: session } = useSession()
-  const [addPost] = useMutation(ADD_POST)
+  const [addPost] = useMutation(ADD_POST, {
+    refetchQueries: [
+      GET_ALL_POSTS,
+      'getPostList'
+    ]
+  })
   const [addSubbread] = useMutation(ADD_SUBBREAD)
 
   const [imageBoxOpen, setImageBoxOpen] = useState(false)

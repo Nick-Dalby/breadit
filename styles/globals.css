@@ -4,6 +4,14 @@
 
 @layer components {
   .icon {
-    @apply h-9 w-6 lg:w-9 cursor-pointer rounded-md lg:p-1 lg:hover:bg-gray-100 
+    @apply h-9 w-6 cursor-pointer rounded-md lg:w-9 lg:p-1 lg:hover:bg-gray-100;
+  }
+
+  .voteBtn {
+    @apply h-6 w-6 rounded-md hover:bg-gray-200 p-1;
+  }
+
+  .postBtns {
+    @apply flex items-center space-x-1 text-sm font-semibold p-2 justify-center hover:bg-gray-100 cursor-pointer rounded-md
   }
 }
