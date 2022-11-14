@@ -137,26 +137,26 @@ const Post = ({ post }: Props) => {
           {/* footer */}
           <div className="mt-4 flex space-x-4 text-gray-400">
             <div className="postBtns">
-              <ChatBubbleLeftIcon className="h-6 w-6" />
+              <ChatBubbleLeftIcon className="h-5 w-5" />
               <p className="">
                 {post.comments.length}{' '}
                 {post.comments.length === 1 ? 'Comment' : 'Comments'}
               </p>
             </div>
             <div className="postBtns">
-              <GiftIcon className="h-6 w-6" />
+              <GiftIcon className="h-5 w-5" />
               <p className="hidden sm:inline">Award</p>
             </div>
             <div className="postBtns">
-              <ShareIcon className="h-6 w-6" />
+              <ShareIcon className="h-5 w-5" />
               <p className="hidden sm:inline">Share</p>
             </div>
             <div className="postBtns">
-              <BookmarkIcon className="h-6 w-6" />
+              <BookmarkIcon className="h-5 w-5" />
               <p className="hidden sm:inline">Save</p>
             </div>
             <div className="postBtns">
-              <EllipsisHorizontalIcon className="h-6 w-6" />
+              <EllipsisHorizontalIcon className="h-5 w-5" />
             </div>
           </div>
         </div>
