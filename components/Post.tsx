@@ -89,7 +89,7 @@ const Post = ({ post }: Props) => {
 
   return (
     <Link href={`/post/${post.id}`} legacyBehavior>
-      <div className=" flex cursor-pointer rounded-lg border border-gray-300 bg-white shadow-sm hover:border-gray-400">
+      <div className="flex cursor-pointer rounded-lg border border-gray-300 bg-white shadow-sm hover:border-gray-400">
         {/* upvotes */}
         <div className="flex flex-col items-center justify-start space-y-1 rounded-l-lg bg-white p-4 text-gray-400">
           <ArrowUpIcon
@@ -138,7 +138,7 @@ const Post = ({ post }: Props) => {
           <div className="mt-4 flex space-x-4 text-gray-400">
             <div className="postBtns">
               <ChatBubbleLeftIcon className="h-5 w-5" />
-              <p className="">
+              <p className="hidden sm:inline">
                 {post.comments.length}{' '}
                 {post.comments.length === 1 ? 'Comment' : 'Comments'}
               </p>
