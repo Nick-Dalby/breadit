@@ -205,6 +205,8 @@ type Query {
       table: "vote"
       configuration: "postgresql_config"
     )
+  
+
   getVotePaginatedList(first: Int, after: Int): [Vote]
     @dbquery(
       type: "postgresql"
@@ -309,10 +311,9 @@ type Mutation {
       configuration: "postgresql_config"
     )
   insertVote(
-    username: String
-    post_id: ID
-    created_at: DateTime
-    upvote: Boolean
+    username: String!
+    post_id: ID!
+    upvote: Boolean!
   ): Vote
     @dbquery(
       type: "postgresql"
@@ -322,3 +323,4 @@ type Mutation {
       configuration: "postgresql_config"
     )
 }
+
