@@ -10,12 +10,21 @@ import {
 import Link from 'next/link'
 import TimeAgo from 'react-timeago'
 import Avatar from './Avatar'
+import { Orbit } from '@uiball/loaders'
 
 type Props = {
   post: Post
 }
 
 const Post = ({ post }: Props) => {
+  
+  //adding a loading state, remove if implementing SSR?
+  if (!post) return (
+    <div className='flex w-full items-center justify-center p-10 text-xl'>
+      <Orbit size={50} color='#ff4520' />
+    </div>
+  )
+
   return (
     <Link href={`/post/${post.id}`} legacyBehavior>
       <div className=" flex cursor-pointer rounded-lg border border-gray-300 bg-white shadow-sm hover:border-gray-400">
