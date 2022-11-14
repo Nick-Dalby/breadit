@@ -39,7 +39,7 @@ const Post = ({ post }: Props) => {
           {/* header */}
           <div className="flex items-start space-x-2">
             <Avatar seed={post.subbread[0]?.filling} />
-            <p className="text-xs text-gray-400">
+            <p className="text-xs text-gray-400 lowercase">
               <Link href={`/subbread/${post.subbread[0]?.filling}`}>
                 <span className="font-bold text-black hover:text-blue-500 hover:underline">
                   br/{post.subbread[0]?.filling}
