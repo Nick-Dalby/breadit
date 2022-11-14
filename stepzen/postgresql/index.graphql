@@ -178,6 +178,19 @@ type Query {
       table: "subbread"
       configuration: "postgresql_config"
     )
+
+  getSubbreadListLimit(limit: Int!): [Subbread]
+    @dbquery(
+      type: "postgresql"
+      schema: "public"
+      query: """
+      select * from "subbread"
+      order by "created_at" desc
+      limit $1
+      """
+      configuration: "postgresql_config"
+    )
+
   getSubbreadPaginatedList(first: Int, after: Int): [Subbread]
     @dbquery(
       type: "postgresql"

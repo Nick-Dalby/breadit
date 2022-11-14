@@ -9,6 +9,15 @@ export const GET_SUBBREAD_BY_FILLING = gql`
     }
   }
 `
+export const GET_SUBBREADS_WITH_LIMIT = gql`
+  query MyQuery($limit: Int!) {
+    getSubbreadListLimit(limit: $limit) {
+      created_at
+      filling
+      id
+    }
+  }
+`
 
 export const GET_ALL_POSTS = gql`
   query MyQuery {
