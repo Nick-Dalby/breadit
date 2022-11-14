@@ -22,7 +22,7 @@ const Header = () => {
   const { data: session } = useSession()
 
   return (
-    <div className="sticky top-0 z-50 flex bg-white px-4 py-2 shadow-sm items-center">
+    <div className="sticky top-0 z-50 flex bg-white px-4 py-2 shadow-sm items-center h-14">
       <Link href="/">
         <div className="flex flex-shrink-0 cursor-pointer items-center space-x-2">
           <div className="relative h-10 w-10">
