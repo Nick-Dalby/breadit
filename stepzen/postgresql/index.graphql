@@ -137,15 +137,15 @@ type Query {
     )
 
   getPostByPostId(post_id: ID!): Post
-   @dbquery(
-    type: "postgresql"
-    schema: "public"
-    query: """
-    select * from "post"
-    where "post"."id" = $1
-    """
-    configuration: "postgresql_config"
-   )  
+    @dbquery(
+      type: "postgresql"
+      schema: "public"
+      query: """
+      select * from "post"
+      where "post"."id" = $1
+      """
+      configuration: "postgresql_config"
+    )
 
   getPostPaginatedList(first: Int, after: Int): [Post]
     @dbquery(
@@ -236,12 +236,7 @@ type Mutation {
       dml: DELETE
       configuration: "postgresql_config"
     )
-  insertComment(
-    username: String
-    post_id: ID
-    text: String
-    created_at: DateTime
-  ): Comment
+  insertComment(username: String!, post_id: ID!, text: String!): Comment
     @dbquery(
       type: "postgresql"
       schema: "public"
@@ -249,6 +244,7 @@ type Mutation {
       dml: INSERT
       configuration: "postgresql_config"
     )
+    
   " Mutations for type 'Post' "
   deletePost(
     body: String!
