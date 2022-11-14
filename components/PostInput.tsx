@@ -110,6 +110,10 @@ const PostInput = () => {
       toast.success('New post created ✨', {
         id: notification
       })
+
+      // clears the client cache (*consecutive queries were duplicating subbreads)
+      client.resetStore()
+
     } catch (error) {
       toast.error('uh oh', {
         id: notification
