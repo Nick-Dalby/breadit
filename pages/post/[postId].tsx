@@ -78,6 +78,7 @@ const PostPage = () => {
             placeholder={session ? 'leave a comment...' : 'sign in to comment'}
           />
           <button
+            disabled={!session}
             type="submit"
             className="rounded-full bg-orange-500 p-3 font-semibold text-white disabled:bg-gray-200"
           >
