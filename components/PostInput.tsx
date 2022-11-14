@@ -3,9 +3,9 @@ import { LinkIcon, PhotoIcon } from '@heroicons/react/24/outline'
 import { useSession } from 'next-auth/react'
 import { useState } from 'react'
 import { useForm } from 'react-hook-form'
+import { toast } from 'react-hot-toast'
 import { ADD_POST, ADD_SUBBREAD } from '../graphql/mutations'
 import Avatar from './Avatar'
-import { toast } from 'react-hot-toast'
 
 import client from '../apollo-client'
 import { GET_ALL_POSTS, GET_SUBBREAD_BY_FILLING } from '../graphql/queries'
@@ -17,13 +17,14 @@ type FormData = {
   subbread: string
 }
 
-const PostInput = () => {
+type Props = {
+  subbread?: string
+}
+
+const PostInput = ({ subbread }: Props) => {
   const { data: session } = useSession()
   const [addPost] = useMutation(ADD_POST, {
-    refetchQueries: [
-      GET_ALL_POSTS,
-      'getPostList'
-    ]
+    refetchQueries: [GET_ALL_POSTS, 'getPostList'],
   })
   const [addSubbread] = useMutation(ADD_SUBBREAD)
 
@@ -48,7 +49,7 @@ const PostInput = () => {
       } = await client.query({
         query: GET_SUBBREAD_BY_FILLING,
         variables: {
-          filling: formData.subbread,
+          filling: subbread || formData.subbread,
         },
       })
 
@@ -108,15 +109,14 @@ const PostInput = () => {
       setValue('postTitle', '')
       setValue('subbread', '')
       toast.success('New post created ✨', {
-        id: notification
+        id: notification,
       })
 
       // clears the client cache (*consecutive queries were duplicating subbreads)
       client.resetStore()
-
     } catch (error) {
       toast.error('uh oh', {
-        id: notification
+        id: notification,
       })
     }
   })
@@ -135,7 +135,13 @@ const PostInput = () => {
           className="flex-1 rounded-full bg-gray-50 p-2 pl-5 outline-none"
           disabled={!session}
           type="text"
-          placeholder={session ? 'Create post' : 'Sign in to create a post'}
+          placeholder={
+            session
+              ? subbread
+                ? `Create a post in r/${subbread}`
+                : 'Create post'
+              : 'Sign in to create a post'
+          }
         />
         <PhotoIcon
           className={`h-6 cursor-pointer text-gray-300 ${
@@ -158,15 +164,17 @@ const PostInput = () => {
               placeholder="Text (optional)"
             />
           </div>
-          <div className="flex items-center px-2">
-            <p className="min-w-[90px]">Subbread:</p>
-            <input
-              className="m-2 flex-1 rounded-lg bg-blue-50 p-3 outline-none"
-              {...register('subbread', { required: true })}
-              type="text"
-              placeholder="eg: CroissantCrew"
-            />
-          </div>
+          {!subbread && (
+            <div className="flex items-center px-2">
+              <p className="min-w-[90px]">Subbread:</p>
+              <input
+                className="m-2 flex-1 rounded-lg bg-blue-50 p-3 outline-none lowercase"
+                {...register('subbread', { required: true })}
+                type="text"
+                placeholder="eg: CroissantCrew"
+              />
+            </div>
+          )}
 
           {imageBoxOpen && (
             <div className="flex items-center px-2">
