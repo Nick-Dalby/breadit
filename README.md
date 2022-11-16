@@ -1,34 +1,48 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+# Breadit
 
-## Getting Started
+reddit inspired NextJs app for bread fans! 
 
-First, run the development server:
+**Live site:** [Breadit](https://breadit.vercel.app/)
 
-```bash
-npm run dev
-# or
-yarn dev
-```
+![screenshot](https://user-images.githubusercontent.com/99472735/202148981-9780a3bc-b407-4226-b9c9-586943d80112.jpeg)
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+## How It's Made:
 
-You can start editing the page by modifying `pages/index.tsx`. The page auto-updates as you edit the file.
+**Tech used:** NextJs, React, TypeScript, Tailwind, graphQL 
 
-[API routes](https://nextjs.org/docs/api-routes/introduction) can be accessed on [http://localhost:3000/api/hello](http://localhost:3000/api/hello). This endpoint can be edited in `pages/api/hello.ts`.
+NextJs, TypeScript & Tailwind reddit-inspired demo. Using apollo client for graphQL queries to fetch data from a postgres database.
+Users can create posts, leave comments and votes.
 
-The `pages/api` directory is mapped to `/api/*`. Files in this directory are treated as [API routes](https://nextjs.org/docs/api-routes/introduction) instead of React pages.
+Features:
 
-## Learn More
+- Next-Auth
+- dynamic routes
+- Typescript
+- graphQl queries and mutations using apollo client
+- responsive styles with TailwindCSS
+- react-hook-forms
+- dicebear avatars
+- react-hot-toast
 
-To learn more about Next.js, take a look at the following resources:
+## Optimizations
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+Only basic creating posts, commenting and voting is supported could implement editing, deleting + search, user profile page etc.
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
+## Lessons Learned / Demonstrations of:
 
-## Deploy on Vercel
+- next-auth
+- apollo client / graphQl
+- react-hook-forms
+- stepzen implementation (graphQl api)
+- Typescript with Typings file
+ 
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+## More projects:
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+Here are some more examples of recent projects in my portfolio:
+
+**Workshop:** https://github.com/Nick-Dalby/workshop-store
+
+**AK-Wat Portfolio:** https://github.com/Nick-Dalby/ak-portfolio
+
+**Splitter Tip Calculator:** https://github.com/Nick-Dalby/splitter-tip-calculator
